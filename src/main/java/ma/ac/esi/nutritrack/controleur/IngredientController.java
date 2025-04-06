@@ -36,20 +36,29 @@ public class IngredientController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Récupérer les données du formulaire
-        int mealId = Integer.parseInt(request.getParameter("mealId"));
-        String name = request.getParameter("name");
-        double calories = Double.parseDouble(request.getParameter("calories"));
-
-        // Appeler le service pour ajouter l'ingrédient
-        IngredientService ingredientService = new IngredientService();
-        boolean success = ingredientService.addIngredientToMeal(mealId, name, calories);
-
-        // Rediriger en fonction du résultat
-        if (success) {
-            response.sendRedirect("meals.jsp"); // Redirection vers une page de succès
-        } else {
-            response.sendRedirect("error.html");} // Redirection vers une page d'erreur
-        }
+	    String action = request.getParameter("action");
+	    IngredientService service = new IngredientService();
+	    
+	    if ("update".equals(action)) {
+	        // Update existing ingredient
+	        int id = Integer.parseInt(request.getParameter("id"));
+	        String name = request.getParameter("name");
+	        int calories = Integer.parseInt(request.getParameter("calories"));
+	        boolean success = service.updateIngredient(id, name, calories);
+	        response.sendRedirect(success ? "MealController" : "error.html");
+	    } else if ("delete".equals(action)) {
+	        // Delete ingredient
+	        int id = Integer.parseInt(request.getParameter("id"));
+	        boolean success = service.deleteIngredient(id);
+	        response.sendRedirect(success ? "MealController" : "error.html");
+	    } else {
+	        // Add new ingredient (existing code)
+	        int mealId = Integer.parseInt(request.getParameter("mealId"));
+	        String name = request.getParameter("name");
+	        double calories = Double.parseDouble(request.getParameter("calories"));
+	        boolean success = service.addIngredientToMeal(mealId, name, calories);
+	        response.sendRedirect(success ? "MealController" : "error.html");
+	    }
+	}
 
 }

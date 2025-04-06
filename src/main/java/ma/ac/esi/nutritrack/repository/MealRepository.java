@@ -11,40 +11,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MealRepository {
+	public List<Meal> getAllMeals() {
+	    List<Meal> meals = new ArrayList<>();
+	    String query = "SELECT m.id as meal_id, m.name as meal_name, " +
+	                  "i.id as ing_id, i.name as ing_name, i.calories " +
+	                  "FROM meals m " +
+	                  "LEFT JOIN meal_ingredients mi ON m.id = mi.meal_id " +
+	                  "LEFT JOIN ingredients i ON mi.ingredient_id = i.id " +
+	                  "ORDER BY m.id";
 
-    public List<Meal> getAllMeals() {
-        List<Meal> meals = new ArrayList<>();
-        String mealQuery = "SELECT * FROM meals";
-        String ingredientQuery = "SELECT * FROM ingredients WHERE meal_id = ?";
+	    try (Connection connection = DBUtil.getConnection();
+	         PreparedStatement stmt = connection.prepareStatement(query);
+	         ResultSet rs = stmt.executeQuery()) {
 
-        try (Connection connection = DBUtil.getConnection();
-             PreparedStatement mealStmt = connection.prepareStatement(mealQuery);
-             ResultSet mealRs = mealStmt.executeQuery()) {
-
-            while (mealRs.next()) {
-                int mealId = mealRs.getInt("id");
-                String mealName = mealRs.getString("name");
-                List<Ingredient> ingredients = new ArrayList<>();
-
-                try (PreparedStatement ingStmt = connection.prepareStatement(ingredientQuery)) {
-                    ingStmt.setInt(1, mealId);
-                    ResultSet ingRs = ingStmt.executeQuery();
-
-                    while (ingRs.next()) {
-                        ingredients.add(new Ingredient(
-                                ingRs.getInt("id"),
-                                ingRs.getString("name"),
-                                ingRs.getInt("calories")
-                        ));
-                    }
-                }
-
-                meals.add(new Meal(mealId, mealName, ingredients));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return meals;
-    }
+	        Meal currentMeal = null;
+	        while (rs.next()) {
+	            int mealId = rs.getInt("meal_id");
+	            
+	            // Create new meal if different from current
+	            if (currentMeal == null || currentMeal.getMealId() != mealId) {
+	                String mealName = rs.getString("meal_name");
+	                currentMeal = new Meal(mealId, mealName, new ArrayList<>());
+	                meals.add(currentMeal);
+	            }
+	            
+	            // Add ingredient if exists
+	            int ingId = rs.getInt("ing_id");
+	            if (!rs.wasNull()) {
+	                currentMeal.getIngredients().add(new Ingredient(
+	                    ingId,
+	                    rs.getString("ing_name"),
+	                    rs.getInt("calories")
+	                ));
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return meals;
+	}
 }

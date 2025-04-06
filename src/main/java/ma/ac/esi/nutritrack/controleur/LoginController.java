@@ -45,7 +45,6 @@ public class LoginController extends HttpServlet {
 				  UserService userService= new UserService(); 
 				  if(userService.findUserByCredentials(login, password))  
 				  { 
-				     
 				         HttpSession session = request.getSession(); 
 				         session.setAttribute("login", login); 
 				                  
