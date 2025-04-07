@@ -9,79 +9,188 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    body { background-color: #f8f9fa; }
-    /* Fixed Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      width: 200px; /* Adjust width as needed */
-      background-color: #2c2c54;
-      color: white;
-      padding-top: 20px;
-    }
-    .sidebar a {
-      color: white;
-      display: block;
-      padding: 15px;
-      text-decoration: none;
-      text-align: center;
-    }
-    .sidebar a:hover { background-color: #57577d; }
-    .logout-btn {
-      width: 100%;
-      padding: 10px;
-      background-color: #dc3545;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      margin: 10px 0;
-    }
-    .logout-btn:hover { background-color: #c82333; }
-    .meal-card { border-radius: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .kcal-box { background-color: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .meal-item { border-radius: 10px; background-color: #fff; padding: 10px; margin-bottom: 10px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: relative; }
-    .meal-item img { width: 40px; height: 40px; display: block; margin: 0 auto 5px; }
-    .meal-total { font-weight: bold; color: #28a745; margin-top: 10px; }
-    .meal-actions { position: absolute; top: 5px; right: 5px; }
-    .meal-actions button { padding: 0.25rem 0.5rem; font-size: 0.75rem; }
-    /* Header Banner Style */
-    .header-banner img { 
-      width: 100%; 
-      height: 300px; /* Adjust height as needed */
-      object-fit: cover; 
-    }
-    /* Main content margin to avoid sidebar overlap */
-    .main-content {
-      margin-left: 200px; /* Must match sidebar width */
-      padding: 20px;
-    }
+    body {
+  background-color: #fdfcfb; /* very soft cream */
+  font-family: 'Segoe UI', sans-serif;
+  color: #3e3e3e;
+	}
+
+	/* Sidebar */
+	.sidebar {
+  		position: fixed;
+  		top: 0;
+  		left: 0;
+  		bottom: 0;
+  		width: 200px;
+  		background-color: #554c3b; /* deep earthy brown */
+  		color: white;
+  		padding-top: 20px;
+  		box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+	}
+
+	.sidebar a {
+  		color: white;
+  		display: block;
+  		padding: 15px;
+  		text-decoration: none;
+  		text-align: center;
+  		transition: background-color 0.3s;
+	}
+
+	.sidebar a:hover {
+  		background-color: #776f5e;
+	}
+
+	.sidebar .user-info {
+  		font-size: 0.9rem;
+	}
+
+	.sidebar form button:hover {
+  		background-color: #6c6350;
+	}
+
+	/* Header Banner */
+	.header-banner img {
+  		width: 100%;
+  		height: 300px;
+  		object-fit: cover;
+  		border-radius: 12px;
+	}
+
+	/* Main Content */
+	.main-content {
+  		margin-left: 200px;
+  		padding: 30px;
+	}
+
+	/* Calories box */
+	.kcal-box {
+  		background-color: #fffbe6;
+  		border-left: 6px solid #e0b146;
+ 		padding: 20px;
+  		border-radius: 12px;
+  		box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+	}
+
+	.kcal-box h3 {
+  		color: #b46b00;
+	}
+
+	.progress-bar {
+  		background-color: #f2a541;
+		}
+
+	/* Meal card and items */
+	.meal-item {
+  		background-color: #fff;
+  		padding: 12px;
+  		margin-bottom: 10px;
+  		text-align: center;
+  		box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  		border-radius: 10px;
+  		position: relative;
+  		transition: transform 0.2s ease;
+	}
+
+	.meal-item:hover {
+  		transform: scale(1.02);
+	}
+
+	.meal-item img {
+  		width: 40px;
+  		height: 40px;
+  		margin-bottom: 5px;
+	}
+
+	.meal-total {
+  		font-weight: bold;
+  		color: #28a745;
+  		margin-top: 10px;
+	}
+
+	.meal-actions {
+  		position: absolute;
+  		top: 5px;
+  		right: 5px;
+	}
+
+	.meal-actions button {
+  		padding: 0.25rem 0.5rem;
+  		font-size: 0.75rem;
+	}
+
+	/* Buttons */
+	.btn-primary {
+  		background-color: #f2a541;
+  		border-color: #f2a541;
+  		color: white;
+	}
+
+	.btn-primary:hover {
+  		background-color: #e0912b;
+  		border-color: #e0912b;
+	}
+
+	.btn-success {
+  		background-color: #68a357;
+  		border-color: #68a357;
+	}
+
+	.btn-success:hover {
+  		background-color: #5a8f4d;
+	}
+
+	/* Modal Styling (optional if you want coherence) */
+	.modal-content {
+  		border-radius: 10px;
+  		box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+	}
+    
   </style>
+  <script>
+  	const modal = document.querySelectorAll('.modal');
+  	modal.forEach(m => {
+    	m.addEventListener('show.bs.modal', () => {
+      		document.body.style.overflow = 'hidden';
+    	});
+    	m.addEventListener('hidden.bs.modal', () => {
+      		document.body.style.overflow = 'auto';
+    	});
+  	});
+	</script>
+  
 </head>
 <body>
   <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
-      <div class="col-md-2 sidebar d-flex flex-column align-items-center">
-        <!-- User Info and Logout -->
-        <div class="user-info"> 
-          <i class="bi bi-person-circle"></i> 
-          <span><%= session.getAttribute("login") != null ? session.getAttribute("login") : "Utilisateur" %></span> 
-        </div> 
-        <form action="LogoutController" method="post"> 
-          <button type="submit" class="logout-btn"><i class="bi bi-box-arrow-right"></i> Déconnexion</button> 
-        </form>
-        <!-- Navigation Links -->
-        <a href="#"><i class="bi bi-grid"></i></a>
-        <a href="#"><i class="bi bi-search"></i></a>
-        <a href="#"><i class="bi bi-people"></i></a>
-        <a href="#"><i class="bi bi-star"></i></a>
-        <a href="#"><i class="bi bi-calendar"></i></a>
-        <a href="#"><i class="bi bi-check-square"></i></a>
-        <a href="#"><i class="bi bi-chat"></i></a>
-        <a href="#"><i class="bi bi-envelope"></i></a>
-      </div>
+      <!-- Sidebar -->
+<div class="col-md-2 sidebar d-flex flex-column justify-content-between align-items-center">
+  <div class="pt-3 w-100 d-flex flex-column align-items-center">
+    <a href="#"><i class="bi bi-grid"></i></a>
+    <a href="#"><i class="bi bi-search"></i></a>
+    <a href="#"><i class="bi bi-people"></i></a>
+    <a href="#"><i class="bi bi-star"></i></a>
+    <a href="#"><i class="bi bi-calendar"></i></a>
+    <a href="#"><i class="bi bi-check-square"></i></a>
+    <a href="#"><i class="bi bi-chat"></i></a>
+    <a href="#"><i class="bi bi-envelope"></i></a>
+  </div>
+
+  <!-- User Info & Logout -->
+  <div class="mb-3 text-center">
+    <div class="user-info text-white">
+      <i class="bi bi-person-circle fs-4"></i><br>
+      <span><%= session.getAttribute("login") != null ? session.getAttribute("login") : "Utilisateur" %></span>
+    </div>
+    <form action="LogoutController" method="post" class="mt-2">
+      <button type="submit" class="btn btn-outline-light btn-sm">
+        <i class="bi bi-box-arrow-right"></i> Déconnexion
+      </button>
+    </form>
+  </div>
+</div>
+      
       
       <!-- Main Content -->
       <div class="col-md-10 main-content">

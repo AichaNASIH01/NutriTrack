@@ -41,7 +41,7 @@ public class LogoutController extends HttpServlet {
 
         // 3. Redirect to login page with logout parameter
         String contextPath = request.getContextPath();
-        response.sendRedirect(contextPath + "/LoginController?logout=true");
+        response.sendRedirect(contextPath + "/index.html");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
