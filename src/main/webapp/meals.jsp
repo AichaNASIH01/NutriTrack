@@ -21,7 +21,7 @@
   		top: 0;
   		left: 0;
   		bottom: 0;
-  		width: 200px;
+  		width: 125px;
   		background-color: #554c3b; /* deep earthy brown */
   		color: white;
   		padding-top: 20px;
@@ -164,18 +164,17 @@
   <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
-      <!-- Sidebar -->
-<div class="col-md-2 sidebar d-flex flex-column justify-content-between align-items-center">
-  <div class="pt-3 w-100 d-flex flex-column align-items-center">
-    <a href="#"><i class="bi bi-grid"></i></a>
-    <a href="#"><i class="bi bi-search"></i></a>
-    <a href="#"><i class="bi bi-people"></i></a>
-    <a href="#"><i class="bi bi-star"></i></a>
-    <a href="#"><i class="bi bi-calendar"></i></a>
-    <a href="#"><i class="bi bi-check-square"></i></a>
-    <a href="#"><i class="bi bi-chat"></i></a>
-    <a href="#"><i class="bi bi-envelope"></i></a>
-  </div>
+	<div class="col-md-2 sidebar d-flex flex-column justify-content-between align-items-center">
+	  <div class="pt-3 w-100 d-flex flex-column align-items-center">
+	    <a href="#"><i class="bi bi-grid"></i></a>
+	    <a href="#"><i class="bi bi-search"></i></a>
+	    <a href="#"><i class="bi bi-people"></i></a>
+	    <a href="#"><i class="bi bi-star"></i></a>
+	    <a href="#"><i class="bi bi-calendar"></i></a>
+	    <a href="#"><i class="bi bi-check-square"></i></a>
+	    <a href="#"><i class="bi bi-chat"></i></a>
+	    <a href="#"><i class="bi bi-envelope"></i></a>
+	  </div>
 
   <!-- User Info & Logout -->
   <div class="mb-3 text-center">
