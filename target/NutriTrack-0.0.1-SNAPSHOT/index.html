@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Planify - Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background: rgba(255, 248, 240, 0.9); /* Warm ivory */
+      backdrop-filter: blur(10px);
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      width: 350px;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+      color: #3e2c1c; /* Warm brown */
+    }
+
+    .login-container p {
+      margin-bottom: 2rem;
+      color: #5f4b38; /* Earthy brown */
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 16px;
+      border: 1px solid #d3bfa3;
+      border-radius: 12px;
+      background-color: #fdf8f2; /* Very light beige */
+      font-size: 1rem;
+      color: #3e2c1c;
+    }
+
+    .input-group .icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #a88d6c; /* Dusty brown */
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      color: #3e2c1c;
+    }
+
+    .toggle-container input {
+      display: none;
+    }
+
+    .toggle-slider {
+      width: 36px;
+      height: 20px;
+      background: #cbb9a6;
+      border-radius: 10px;
+      margin-right: 10px;
+      position: relative;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .toggle-slider::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-container input:checked + .toggle-slider {
+      background: #9e7f5c; /* Warm brown when active */
+    }
+
+    .toggle-container input:checked + .toggle-slider::before {
+      transform: translateX(16px);
+    }
+
+    .toggle-label {
+      margin-left: 4px;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #b99166 0%, #e3b882 100%);
+      border: none;
+      color: #fffaf5;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-login:hover {
+      background: linear-gradient(135deg, #a97a50 0%, #d39e65 100%);
+    }
+
+    .signup-link {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #5f4b38;
+    }
+
+    .signup-link a {
+      color: #8b5e3c;
+      text-decoration: none;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Welcome Back</h2>
+    <p>Please login to continue</p>
+    <form method="POST" action="LoginController">
+  		<div class="input-group">
+    		<input type="email" name="uname" placeholder="Email" required />
+    		<span class="icon">@</span>
+  		</div>
+  		<div class="input-group">
+    		<input type="password" name="psw" placeholder="Password" required />
+    		<span class="icon">🔒</span>
+  		</div>
+  		<label class="toggle-container">
+    		<input type="checkbox" id="remember-me" />
+    		<span class="toggle-slider"></span>
+    		<span class="toggle-label">Remember Me</span>
+  		</label>
+  		<button type="submit" class="btn-login">Login</button>
+  		<p class="signup-link">Don't have an account? <a href="#">Sign Up</a></p>
+	</form>
+    	
+  </div>
+</body>
+</html>

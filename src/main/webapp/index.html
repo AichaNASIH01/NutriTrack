@@ -149,23 +149,24 @@
   <div class="login-container">
     <h2>Welcome Back</h2>
     <p>Please login to continue</p>
-    <form>
-      <div class="input-group">
-        <input type="email" placeholder="Email" required />
-        <span class="icon">@</span>
-      </div>
-      <div class="input-group">
-        <input type="password" placeholder="Password" required />
-        <span class="icon">🔒</span>
-      </div>
-      <label class="toggle-container">
-        <input type="checkbox" id="remember-me" />
-        <span class="toggle-slider"></span>
-        <span class="toggle-label">Remember Me</span>
-      </label>
-      <button type="submit" class="btn-login">Login</button>
-      <p class="signup-link">Don't have an account? <a href="#">Sign Up</a></p>
-    </form>
+    <form method="POST" action="LoginController">
+  		<div class="input-group">
+    		<input type="email" name="uname" placeholder="Email" required />
+    		<span class="icon">@</span>
+  		</div>
+  		<div class="input-group">
+    		<input type="password" name="psw" placeholder="Password" required />
+    		<span class="icon">🔒</span>
+  		</div>
+  		<label class="toggle-container">
+    		<input type="checkbox" id="remember-me" />
+    		<span class="toggle-slider"></span>
+    		<span class="toggle-label">Remember Me</span>
+  		</label>
+  		<button type="submit" class="btn-login">Login</button>
+  		<p class="signup-link">Don't have an account? <a href="#">Sign Up</a></p>
+	</form>
+    	
   </div>
 </body>
 </html>

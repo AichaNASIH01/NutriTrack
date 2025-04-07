@@ -1,64 +1,107 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriTrack - Erreur de Connexion</title>
-    <style>
-        /* Styles CSS */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Planify - Error</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
 
-        .error-container {
-            text-align: center;
-            background: #ffffff;
-            padding: 20px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    body {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .error-title {
-            color: #d9534f; /* Rouge subtil */
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
+    .error-container {
+      background: rgba(255, 248, 240, 0.95); /* Warm ivory with more opacity */
+      backdrop-filter: blur(8px);
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      width: 400px;
+      text-align: center;
+      border: 1px solid rgba(211, 191, 163, 0.3); /* Subtle border */
+    }
 
-        .error-message {
-            color: #555555;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+    .error-emoji {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      color: #d9534f; /* Red */
+      animation: bounce 1s infinite alternate;
+    }
 
-        .return-button {
-            background-color: #007bff; /* Bleu */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
 
-        .return-button:hover {
-            background-color: #0056b3; /* Bleu foncé au survol */
-        }
-    </style>
+    .error-title {
+      font-size: 1.8rem;
+      color: #c9302c; /* Darker red */
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .error-message {
+      color: #a94442; /* Muted red */
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .btn-return {
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #d9534f 0%, #c9302c 100%); /* Red gradient */
+      border: none;
+      color: #fffaf5;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(217, 83, 79, 0.3);
+    }
+
+    .btn-return:hover {
+      background: linear-gradient(135deg, #c9302c 0%, #d43f00 100%); /* Darker red gradient */
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(217, 83, 79, 0.4);
+    }
+
+    .error-details {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #d9534f; /* Red for error details */
+      border-top: 1px dashed #c9302c;
+      padding-top: 1rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="error-container">
-        <h1 class="error-title">Erreur de Connexion</h1>
-        <p class="error-message">Aucun utilisateur trouvé avec les identifiants fournis.</p>
-        <a href="index.html" class="return-button">Retour à la page de connexion</a>
-    </div>
+  <div class="error-container">
+    <div class="error-emoji">❌</div> <!-- Changed emoji to red cross -->
+    <h1 class="error-title">Oops! Something Went Wrong</h1>
+    <p class="error-message">
+      We encountered an issue while processing your request.<br>
+      Please try again or contact support if the problem persists.
+    </p>
+    <a href="index.html" class="btn-return">Return to Login</a>
+  </div>
+
+  <script>
+    // Add current date/time
+    const now = new Date();
+    document.getElementById('datetime').textContent = 
+      now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+  </script>
 </body>
 </html>
